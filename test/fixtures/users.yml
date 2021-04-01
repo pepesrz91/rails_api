@@ -3,9 +3,9 @@
 one:
   username: MyString
   password_digest: MyString
-  age: 1
+  points: 1
 
 two:
   username: MyString
   password_digest: MyString
-  age: 1
+  points: 1
