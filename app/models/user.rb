@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_one :reward_manager
+  has_one :reward_manager, dependent: :delete
 end

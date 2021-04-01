@@ -4,8 +4,13 @@ class BankTest < ActiveSupport::TestCase
   test "It should not create a bank without name" do
     bank = Bank.new
     bank.save
-    puts bank.valid
     assert_not bank.valid?
+  end
+
+  test "It should create a bank properly" do
+    bank = Bank.new name:"Scotia"
+    bank.save
+    assert bank.valid?
   end
 
 end
