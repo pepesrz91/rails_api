@@ -3,9 +3,9 @@
 one:
   username: MyString
   password_digest: MyString
-  points: 1
+  reward_store: 1
 
 two:
   username: MyString
   password_digest: MyString
-  points: 1
+  reward_store: 1
