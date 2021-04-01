@@ -17,6 +17,7 @@ class BanksController < ApplicationController
   def create
     @bank = Bank.new(bank_params)
 
+
     if @bank.save
       render json: @bank, status: :created, location: @bank
     else
