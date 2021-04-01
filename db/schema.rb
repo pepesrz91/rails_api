@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_224116) do
+ActiveRecord::Schema.define(version: 2021_04_01_224741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "banks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "redeemed_rewards", force: :cascade do |t|
+    t.string "name"
+    t.datetime "timestamp"
+    t.integer "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_redeemed_rewards_on_user_id"
+  end
 
   create_table "reward_managers", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -24,6 +40,15 @@ ActiveRecord::Schema.define(version: 2021_04_01_224116) do
     t.index ["user_id"], name: "index_reward_managers_on_user_id"
   end
 
+  create_table "rewards", force: :cascade do |t|
+    t.string "name"
+    t.bigint "bank_id", null: false
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bank_id"], name: "index_rewards_on_bank_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -32,5 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_224116) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "redeemed_rewards", "users"
   add_foreign_key "reward_managers", "users"
+  add_foreign_key "rewards", "banks"
 end
