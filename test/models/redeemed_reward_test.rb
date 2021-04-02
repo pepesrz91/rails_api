@@ -7,7 +7,9 @@ class RedeemedRewardTest < ActiveSupport::TestCase
   #
 
   test "It should create a redeemed reward properly" do
-    user = User.new
+    bank = Bank.new(name:"Coolest Bank")
+    bank.save
+    user = User.new(username:"pepe", password:"hello", bank_id:bank.id)
     user.save
     redeemed = RedeemedReward.new  user_id:user.id
     redeemed.save

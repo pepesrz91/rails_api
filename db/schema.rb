@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_230002) do
+ActiveRecord::Schema.define(version: 2021_04_02_021114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,15 @@ ActiveRecord::Schema.define(version: 2021_04_01_230002) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
-    t.integer "reward_store"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "bank_id", null: false
+    t.index ["bank_id"], name: "index_users_on_bank_id"
   end
 
   add_foreign_key "redeemed_rewards", "users"
   add_foreign_key "reward_managers", "users"
   add_foreign_key "rewards", "banks"
   add_foreign_key "session_stores", "users"
+  add_foreign_key "users", "banks"
 end
